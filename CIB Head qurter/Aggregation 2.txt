@@ -1,0 +1,111 @@
+	
+						( Aggregation 2 )
+
+hostname Aggregation2
+int ran e0/1,e1/1,e2/1,e2/2-3
+switch trunk enc dot
+sw mo tr	
+switch trunk allowed vlan add 2-11
+switch trunk native vlan 1000
+
+int e2/0
+no switchport
+ip add 192.168.20.2 255.255.255.0
+no sh
+
+----------------
+int ran e2/2-3
+channel-group 1 mode active
+---------------------------
+int vlan 2
+ip add 10.10.2.2 255.255.255.0
+no sh
+standby 2 ip 10.10.2.10
+
+int vlan 3
+ip add 10.10.3.2 255.255.255.0
+no sh
+standby 3 ip 10.10.3.10
+	
+int vlan 4
+ip add 10.10.4.2 255.255.255.0
+no sh
+standby 4 ip 10.10.4.10	
+
+int vlan 5
+ip add 10.10.5.2 255.255.255.0
+no sh
+standby 5 ip 10.10.5.10
+
+int vlan 6
+ip add 10.10.6.2 255.255.255.0
+no sh
+standby 6 ip 10.10.6.10
+
+int vlan 7
+ip add 10.10.7.2 255.255.255.0
+no sh
+standby 7 ip 10.10.7.10
+standby 7 priority 200
+
+int vlan 8
+ip add 10.10.8.2 255.255.255.0
+no sh
+standby 8 ip 10.10.8.10
+standby 8 priority 200
+
+int vlan 9
+ip add 10.10.9.2 255.255.255.0
+no sh
+standby 9 ip 10.10.9.10
+standby 9 priority 200
+
+int vlan 10
+ip add 10.10.10.2 255.255.255.0
+no sh
+standby 10 ip 10.10.10.10
+standby 10 priority 200
+
+int vlan 11
+ip add 10.10.11.2 255.255.255.0
+no sh
+standby 11 ip 10.10.11.10
+standby 11 priority 200
+exit
+ip routing		
+
+---------------------
+spanning-tree mode mst
+spanning-tree mst 1 root secondary
+spanning-tree mst 2 root primary
+---------------------
+vtp version 3
+vtp	mode client mst
+vtp	mode client vlan
+vtp password 123 hidden
+
+--------------------------------
+int e1/2
+no switchport
+ip add 192.168.1.2 255.255.255.0
+int e1/3
+no switchport
+ip add 192.168.2.2 255.255.255.0
+
+---------------------------------------
+
+router ospf 1
+router-id 2.2.2.2 
+network 192.168.20.2 0.0.0.255 area 0
+network 10.10.2.2 0.0.0.255 area 0
+network 10.10.3.2 0.0.0.255 area 0
+network 10.10.4.2 0.0.0.255 area 0
+network 10.10.5.2 0.0.0.255 area 0
+network 10.10.6.2 0.0.0.255 area 0
+network 10.10.7.2 0.0.0.255 area 0
+network 10.10.8.2 0.0.0.255 area 0
+network 10.10.9.2 0.0.0.255 area 0
+network 10.10.10.2 0.0.0.255 area 0
+network 10.10.11.2 0.0.0.255 area 0
+
+		

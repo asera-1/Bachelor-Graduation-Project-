@@ -1,0 +1,81 @@
+				( DHCP SERVER )
+
+ip dhcp excluded-address 10.20.2.1
+ip dhcp excluded-address 10.20.2.2
+ip dhcp excluded-address 10.20.2.10
+
+ip dhcp excluded-address 10.20.3.1
+ip dhcp excluded-address 10.20.3.2
+ip dhcp excluded-address 10.20.3.10
+
+ip dhcp excluded-address 10.20.4.1
+ip dhcp excluded-address 10.20.4.2
+ip dhcp excluded-address 10.20.4.10
+
+ip dhcp excluded-address 10.20.5.1
+ip dhcp excluded-address 10.20.5.2
+ip dhcp excluded-address 10.20.5.10
+
+ip dhcp excluded-address 10.20.6.1
+ip dhcp excluded-address 10.20.6.2
+ip dhcp excluded-address 10.20.6.10
+
+ip dhcp excluded-address 10.20.7.1
+ip dhcp excluded-address 10.20.7.2
+ip dhcp excluded-address 10.20.7.10
+
+ip dhcp excluded-address 10.20.8.1
+ip dhcp excluded-address 10.20.8.2
+ip dhcp excluded-address 10.20.8.10
+
+ip dhcp excluded-address 10.20.9.1
+ip dhcp excluded-address 10.20.9.2
+ip dhcp excluded-address 10.20.9.10
+
+ip dhcp excluded-address 10.20.10.1
+ip dhcp excluded-address 10.20.10.2
+ip dhcp excluded-address 10.20.10.10
+
+ip dhcp excluded-address 10.20.11.1
+ip dhcp excluded-address 10.20.11.2
+ip dhcp excluded-address 10.20.11.10
+
+ip dhcp pool vlan2
+network 10.20.2.0 /24
+default-router 10.20.2.10
+
+ip dhcp pool vlan3
+network 10.20.3.0 /24
+default-router 10.20.3.10
+
+ip dhcp pool vlan4
+network 10.20.4.0 /24
+default-router 10.20.4.10
+
+ip dhcp pool vlan5
+network 10.20.5.0 /24
+default-router 10.20.5.10
+
+ip dhcp pool vlan6
+network 10.20.6.0 /24
+default-router 10.20.6.10
+
+ip dhcp pool vlan7
+network 10.20.7.0 /24
+default-router 10.20.7.10
+
+ip dhcp pool vlan8
+network 10.20.8.0 /24
+default-router 10.20.8.10
+
+ip dhcp pool vlan9
+network 10.20.9.0 /24
+default-router 10.20.9.10
+
+ip dhcp pool vlan10
+network 10.20.10.0 /24
+default-router 10.20.10.10
+
+ip dhcp pool vlan11
+network 10.20.11.0 /24
+default-router 10.20.11.10

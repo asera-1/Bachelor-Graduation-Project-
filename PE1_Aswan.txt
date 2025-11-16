@@ -1,0 +1,63 @@
+					( PE3 )
+					
+hostname PE1_Aswan 
+ip vrf CIB 
+rd 1:1 
+route-target 1:1
+
+
+int loo 0
+ip add 60.60.60.60 255.255.255.255
+ip ospf 1 area 0
+
+int f0/1	
+ip add 192.168.5.2 255.255.255.252
+mpls ip 
+ip ospf 1 area 0
+no sh
+
+int f2/2
+no switch	
+ip add 192.168.6.2 255.255.255.252
+mpls ip 
+ip ospf 1 area 0
+no sh
+
+int f2/0
+no switch
+ip vrf forwarding CIB
+ip add 4.0.0.2 255.255.255.252
+no sh
+
+int f1/0
+no switch
+ip vrf forwarding CIB
+ip add 3.0.0.2 255.255.255.252
+no sh
+
+exit
+
+line con 0
+loggin synch
+	
+router bgp 200
+
+neighbor 100.100.100.100  remote-as 200
+neighbor 100.100.100.100 update-source Loopback0
+neighbor 200.200.200.200  remote-as 200
+neighbor 200.200.200.200 update-source Loopback0		
+ 				
+address-family vpnv4 unicast
+neighbor 100.100.100.100 activate
+neighbor 200.200.200.200 send-community extended
+neighbor 100.100.100.100 activate
+neighbor 200.200.200.200 send-community extended  
+
+address-family ipv4 vrf CIB
+neighbor 3.0.0.1 remote-as 100
+neighbor 3.0.0.1 activate 
+neighbor 4.0.0.1 remote-as 100
+neighbor 4.0.0.1 activate 
+
+						
+						

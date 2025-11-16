@@ -1,0 +1,44 @@
+
+					( CIB 1 )
+hostname CIB_H					
+int f0/1
+ip add 2.0.0.1 255.255.255.252
+no sh
+
+int f1/0
+no swit
+ip add 1.0.0.1 255.255.255.252
+no sh
+
+int f2/1
+no switch
+ip add 192.168.10.1 255.255.255.0
+no sh
+
+int f2/0
+no switch
+ip add 192.168.20.1 255.255.255.0
+no sh
+
+int lo0
+ip add 10.10.10.10 255.255.255.255
+
+line con 0
+loggin sync
+
+------------------------
+
+router bgp 100
+neighbor 40.40.40.40 remote-as 200
+neighbor 40.40.40.40 activate
+neighbor 40.40.40.40 allowas-in 
+neighbor 40.40.40.40 ebgp-multihop
+neighbor 40.40.40.40 update-source Loopback0
+network 1.0.0.0 mask 255.255.255.252			
+network 2.0.0.0 mas 255.255.255.252
+
+------------
+
+router ospf 1
+network 192.168.10.1 0.0.0.0 area 0
+network 192.168.20.1 0.0.0.0 area 0

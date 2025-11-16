@@ -1,0 +1,42 @@
+			
+					( leaf 3 )
+host leaf3
+
+int e1/0
+no switch
+ip add 10.3.1.1 255.255.255.252
+ip ospf 1 area 0
+no shu
+
+int e1/1
+no switch
+ip add 10.3.2.1 255.255.255.252
+ip ospf 1 area 0
+no shu
+
+int e0/0
+no switch
+ip add 10.3.3.1 255.255.255.252
+ip ospf 1 area 0
+no shu
+
+int e0/1
+no switch
+ip add 10.3.4.1 255.255.255.252
+ip ospf 1 area 0
+no shu	
+
+router ospf 1
+router-id 3.3.3.3				
+
+int e0/2
+no switch
+ip add 192.168.3.1 255.255.255.252
+ip ospf 1 area 1
+no shu
+
+int e0/3
+no switch
+ip add 192.168.3.5 255.255.255.252
+ip ospf 1 area 1
+no shu

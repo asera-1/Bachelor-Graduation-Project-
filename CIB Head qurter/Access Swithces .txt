@@ -1,0 +1,77 @@
+
+					( Access 1 )
+hostname Access1				
+int ran e0/0-1
+sw tr en do 
+sw mo tr
+switch trunk allowed vlan add 2-11
+switch trunk native vlan 1000
+
+int e0/2
+sw mo acc 			
+sw acc vl 2
+spanning-tree portfast edge
+spanning-tree bpduguard enable
+switchport port-security
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+
+------------
+spanning-tree mode mst
+vtp version 3
+vtp	mode client mst
+vtp	mode client vlan
+vtp password 123 hidden 	
+
+
+
+					( Access 2 )
+hostname Access2				
+int ran e1/0-1
+sw tr en do 
+sw mo tr
+switch trunk allowed vlan add 2-11
+switch trunk native vlan 1000
+
+int e0/2
+sw mo acc 
+sw acc vl 6
+spanning-tree portfast edge
+spanning-tree bpduguard enable
+switchport port-security
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+
+------------
+spanning-tree mode mst
+vtp domain CIB
+vtp version 3
+vtp	mode client mst
+vtp	mode client vlan
+vtp password 123 hidden 
+
+----------------------
+					( Access 3 )
+hostname Access3				
+int ran e2/0-1
+sw tr en do 
+sw mo tr
+switch trunk allowed vlan add 2-11
+switch trunk native vlan 1000
+
+int e0/2
+sw mo acc 
+sw acc vl 10
+spanning-tree portfast edge
+spanning-tree bpduguard enable
+switchport port-security
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+
+------------
+spanning-tree mode mst
+vtp domain CIB
+vtp version 3
+vtp	mode client mst
+vtp	mode client vlan
+vtp password 123 hidden 					

@@ -1,0 +1,214 @@
+
+					( Aggregation1 )
+		
+		
+		
+hostname Aggregation1
+vlan 2-11
+int ran e0/0,e1/0,e2/0,e2/2-3
+sw tr en do 
+sw mo tr
+switch trunk allowed vlan add 2-11
+switch trunk native vlan 1000
+
+int e2/1
+no switchport
+ip add 192.168.10.2 255.255.255.0
+no sh
+
+
+
+
+
+--------------
+int ran e2/2-3
+channel-group 1 mode active
+--------------
+int vlan 2
+ip add 10.10.2.1 255.255.255.0
+no sh
+standby 2 ip 10.10.2.10
+standby 2 priority 200 
+
+int vlan 3
+ip add 10.10.3.1 255.255.255.0
+no sh	
+standby 3 ip 10.10.3.10
+standby 3 priority 200 
+
+int vlan 4
+ip add 10.10.4.1 255.255.255.0
+no sh
+standby 4 ip 10.10.4.10
+standby 4 priority 200 	
+
+int vlan 5
+ip add 10.10.5.1 255.255.255.0
+no sh
+standby 5 ip 10.10.5.10
+standby 5 priority 200 
+
+int vlan 6
+ip add 10.10.6.1 255.255.255.0
+no sh
+standby 6 ip 10.10.6.10
+standby 6 priority 200 
+
+
+int vlan 7
+ip add 10.10.7.1 255.255.255.0
+no sh
+standby 7 ip 10.10.7.10
+
+int vlan 8
+ip add 10.10.8.1 255.255.255.0
+no sh
+standby 8 ip 10.10.8.10
+
+int vlan 9
+ip add 10.10.9.1 255.255.255.0
+no sh
+standby 9 ip 10.10.9.10
+
+int vlan 10
+ip add 10.10.10.1 255.255.255.0
+no sh
+standby 10 ip 10.10.10.10
+
+int vlan 11
+ip add 10.10.11.1 255.255.255.0
+no sh
+standby 11 ip 10.10.11.10
+exit
+ip routing
+
+-------------------
+ 
+--------------------
+vtp domain CIB
+vtp mode server mst
+vtp mode server vlan
+vtp version 3
+vtp password 123 hidden
+end
+vtp primary mst force
+vtp primary vlan force
+--------------------
+spanning-tree mode mst
+spanning-tree mst 1 root primary
+spanning-tree mst 2 root secondary
+spanning-tree mst configuration
+name CIB
+revision 1
+instance 1 vlan 2-6
+instance 2 vlan 7-11
+
+--------------------------------------
+ip dhcp excluded-address 10.10.2.1
+ip dhcp excluded-address 10.10.2.2
+ip dhcp excluded-address 10.10.2.10
+
+ip dhcp excluded-address 10.10.3.1
+ip dhcp excluded-address 10.10.3.2
+ip dhcp excluded-address 10.10.3.10
+
+ip dhcp excluded-address 10.10.4.1
+ip dhcp excluded-address 10.10.4.2
+ip dhcp excluded-address 10.10.4.10
+
+ip dhcp excluded-address 10.10.5.1
+ip dhcp excluded-address 10.10.5.2
+ip dhcp excluded-address 10.10.5.10
+
+ip dhcp excluded-address 10.10.6.1
+ip dhcp excluded-address 10.10.6.2
+ip dhcp excluded-address 10.10.6.10
+
+ip dhcp excluded-address 10.10.7.1
+ip dhcp excluded-address 10.10.7.2
+ip dhcp excluded-address 10.10.7.10
+
+ip dhcp excluded-address 10.10.8.1
+ip dhcp excluded-address 10.10.8.2
+ip dhcp excluded-address 10.10.8.10
+
+ip dhcp excluded-address 10.10.9.1
+ip dhcp excluded-address 10.10.9.2
+ip dhcp excluded-address 10.10.9.10
+
+ip dhcp excluded-address 10.10.10.1
+ip dhcp excluded-address 10.10.10.2
+ip dhcp excluded-address 10.10.10.10
+
+ip dhcp excluded-address 10.10.11.1
+ip dhcp excluded-address 10.10.11.2
+ip dhcp excluded-address 10.10.11.10
+
+ip dhcp pool vlan2
+network 10.10.2.0 /24
+default-router 10.10.2.10
+
+ip dhcp pool vlan3
+network 10.10.3.0 /24
+default-router 10.10.3.10
+
+ip dhcp pool vlan4
+network 10.10.4.0 /24
+default-router 10.10.4.10
+
+ip dhcp pool vlan5
+network 10.10.5.0 /24
+default-router 10.10.5.10
+
+ip dhcp pool vlan6
+network 10.10.6.0 /24
+default-router 10.10.6.10
+
+ip dhcp pool vlan7
+network 10.10.7.0 /24
+default-router 10.10.7.10
+
+ip dhcp pool vlan8
+network 10.10.8.0 /24
+default-router 10.10.8.10
+
+ip dhcp pool vlan9
+network 10.10.9.0 /24
+default-router 10.10.9.10
+
+ip dhcp pool vlan10
+network 10.10.10.0 /24
+default-router 10.10.10.10
+
+ip dhcp pool vlan11
+network 10.10.11.0 /24
+default-router 10.10.11.10
+
+-------------------------------------------
+
+int e0/1
+no switchport
+ip add 192.168.1.1 255.255.255.0
+int e0/2
+no switchport
+ip add 192.168.2.1 255.255.255.0
+
+-----------------------------------------
+router ospf 1
+router-id 1.1.1.1 
+network 192.168.10.1 0.0.0.255 area 0
+network 10.10.2.1 0.0.0.255 area 0
+network 10.10.3.1 0.0.0.255 area 0
+network 10.10.4.1 0.0.0.255 area 0
+network 10.10.5.1 0.0.0.255 area 0
+network 10.10.6.1 0.0.0.255 area 0
+network 10.10.7.1 0.0.0.255 area 0
+network 10.10.8.1 0.0.0.255 area 0
+network 10.10.9.1 0.0.0.255 area 0
+network 10.10.10.1 0.0.0.255 area 0
+network 10.10.11.1 0.0.0.255 area 0
+
+----------------
+
+
+

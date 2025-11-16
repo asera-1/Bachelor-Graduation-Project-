@@ -1,0 +1,44 @@
+				
+					( Core1 )
+host Core1
+
+int e0/0
+no swi
+ip add 10.100.1.1 255.255.255.252
+ip ospf 1 area 2 
+no sh
+
+int e0/1
+no swi
+ip add 10.100.2.1 255.255.255.252
+ip ospf 1 area 2 
+no 
+
+int e0/2
+no swi
+ip add 10.100.3.1 255.255.255.252
+ip ospf 1 area 2 
+no sh
+
+int e1/2
+no swi
+ip add 10.100.4.1 255.255.255.252
+ip ospf 1 area 2 
+no sh
+exit
+
+int e0/3
+no switch
+ip add 192.168.50.2 255.255.255.0
+no sh
+ip ospf 1 area 2
+
+int e1/1
+no switch
+ip add 192.168.70.2 255.255.255.0
+no sh
+ip ospf 1 area 2
+
+router ospf 1 
+router-id 100.100.100.100
+					

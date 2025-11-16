@@ -1,0 +1,34 @@
+				( CIB_DataCenter2 )
+				
+hostname CIB_DataCenter2	
+no swit				
+int f2/0
+ip add 4.0.0.1 255.255.255.252
+no sh
+
+int f2/2
+no switch
+ip add 192.168.70.1 255.255.255.0
+no sh
+ip ospf 1 area 2
+
+int f2/1
+no switch
+ip add 192.168.80.1 255.255.255.0
+no sh
+ip ospf 1 area 2
+
+router ospf 1
+default-information originate always
+
+line con 0
+loggin sync
+
+router bgp 100
+neighbor 4.0.0.2 remote-as 200
+neighbor 4.0.0.2 activate
+neighbor 4.0.0.2 allowas-in
+network 4.0.0.0 mask 255.255.255.252 
+
+			
+						

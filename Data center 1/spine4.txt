@@ -1,0 +1,43 @@
+					( spine4 )
+host spine4
+
+int e1/1
+no switch
+ip add 10.1.4.2 255.255.255.252
+ip ospf 1 area 0
+no shu	
+
+int e1/0
+no switch
+ip add 10.2.4.2 255.255.255.252
+ip ospf 1 area 0
+no shu	
+
+int e0/1
+no switch
+ip add 10.3.4.2 255.255.255.252
+ip ospf 1 area 0
+no shu
+
+int e0/0
+no switch
+ip add 10.4.4.2 255.255.255.252
+ip ospf 1 area 0
+no shu	
+
+router ospf 1
+router-id 40.40.40.40
+
+int e1/2
+no swi
+ip add 10.100.4.2 255.255.255.252
+ip ospf 1 area 2 
+no sh
+exit
+
+int e1/3
+no swi
+ip add 10.200.4.2 255.255.255.252
+ip ospf 1 area 2 
+no sh
+exit

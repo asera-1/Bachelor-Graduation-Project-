@@ -1,0 +1,71 @@
+
+
+					( PE 2 )
+					
+hostname PE1_Alex
+ip vrf CIB 
+rd 1:1 
+route-target 1:1
+
+
+int loo 0
+ip add 70.70.70.70 255.255.255.255
+ip ospf 1 area 0
+
+int loo 1
+ip vrf forwarding CIB
+ip add 80.80.80.80 255.255.255.255
+
+
+int f1/4
+no switch
+ip vrf forwarding CIB	
+ip add 6.0.0.2 255.255.255.252
+no sh
+
+int f1/3
+no switch
+ip vrf forwarding CIB	
+ip add 5.0.0.2 255.255.255.252
+no sh
+
+
+int f0/1
+ip add 192.168.2.2 255.255.255.252
+no sh
+ip ospf 1 area 0
+mpls ip 
+
+int f0/0
+ip add 192.168.4.2 255.255.255.252
+no sh
+ip ospf 1 area 0
+mpls ip 
+exit
+
+line con 0
+loggin synch
+
+ip route vrf CIB 20.20.20.20 255.255.255.255 5.0.0.1
+ip route vrf CIB 20.20.20.20 255.255.255.255 6.0.0.1 100
+
+------------------------
+
+router bgp 200
+neighbor 100.100.100.100  remote-as 200
+neighbor 100.100.100.100 update-source Loopback0
+neighbor 200.200.200.200  remote-as 200
+neighbor 200.200.200.200 update-source Loopback0		
+
+address-family vpnv4 unicast
+neighbor 100.100.100.100 activate
+neighbor 100.100.100.100 send-community extended
+neighbor 200.200.200.200 activate
+neighbor 200.200.200.200 send-community extended   				
+
+address-family ipv4 vrf CIB
+neighbor 20.20.20.20 remote-as 100
+neighbor 20.20.20.20 activate 
+neighbor 20.20.20.20 update-source Loopback1
+neighbor 20.20.20.20 ebgp-multihop
+ 

@@ -1,0 +1,20 @@
+
+						( CIB 2 )
+
+int f0/0
+ip add 192.168.1.4 255.255.255.0 
+no sh
+standby 1 ip 192.168.1.10 
+
+int f1/0
+ip add 50.5.5.1 255.255.255.252
+no shut
+
+-------------------------------
+router ospf 1 
+network 192.168.1.4 0.0.0.255 area 0
+
+-----------------
+router bgp 100
+neighbor 50.5.5.2 remote-as 200
+neighbor 50.5.5.2 allowas-in 

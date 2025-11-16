@@ -1,0 +1,48 @@
+	
+					( CIB3 )
+host CIB_B					
+int f2/3
+ip add 5.0.0.1 255.255.255.252
+no sh
+
+int f2/4
+no swi
+ip add 6.0.0.1 255.255.255.252
+no sh
+
+int f2/1
+no swi
+ip add 192.168.30.1 255.255.255.0
+ip ospf 1 area 0
+no sh
+
+
+int f2/2
+no swi
+ip add 192.168.40.1 255.255.255.0
+ip ospf 1 area 0
+no sh
+
+int lo0
+ip add 20.20.20.20 255.255.255.255
+
+ip route 80.80.80.80 255.255.255.255 f2/3
+ip route 80.80.80.80 255.255.255.255 f2/4 100
+	
+	
+
+---------------------------
+router bgp 100
+neighbor 80.80.80.80 remote-as 200
+neighbor 80.80.80.80 activate
+neighbor 80.80.80.80 allowas-in 
+neighbor 80.80.80.80 ebgp-multihop
+neighbor 80.80.80.80 update-source Loopback0
+network 5.0.0.0 mask 255.255.255.252
+network 6.0.0.0 maskk 255.255.255.252
+
+-------------------
+
+
+
+			

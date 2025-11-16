@@ -1,0 +1,42 @@
+
+					( Access 4 )
+hostname Access4				
+int ran e0/1-2
+sw tr en do 
+sw mo tr
+switch trunk allowed vlan add 2-11
+switch trunk native vlan 1000
+
+int e0/0
+sw mo acc 			
+sw acc vl 2
+spanning-tree portfast edge
+spanning-tree bpduguard enable
+switchport port-security
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+
+---------------------------------
+spanning-tree mode rapid-pvst
+
+---------------------------------
+
+					( Access 5 )
+hostname Access5				
+int ran e0/1-2
+sw tr en do 
+sw mo tr
+switch trunk allowed vlan add 2-11
+switch trunk native vlan 1000
+
+int e0/0
+sw mo acc 			
+sw acc vl 10
+spanning-tree portfast edge
+spanning-tree bpduguard enable
+switchport port-security
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+
+---------------------------------
+spanning-tree mode rapid-pvst

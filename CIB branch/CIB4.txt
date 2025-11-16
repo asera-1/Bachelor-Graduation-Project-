@@ -1,0 +1,33 @@
+					( CIB4 )
+int e0/0
+ip add 192.168.20.2 255.255.255.0
+standby 1
+standby 1 ip 192.168.20.10 
+no sh	
+				
+	
+------------------
+router bgp 100
+neighbor 80.8.8.2 remote-as 200
+neighbor 80.8.8.2 allowas-in 
+network 8.8.8.0 mask 255.255.255.252
+ network 10.20.2.0 mask 255.255.255.0
+ network 10.20.3.0 mask 255.255.255.0
+ network 10.20.4.0 mask 255.255.255.0
+ network 10.20.5.0 mask 255.255.255.0
+ network 10.20.6.0 mask 255.255.255.0
+ network 10.20.7.0 mask 255.255.255.0
+ network 10.20.8.0 mask 255.255.255.0
+ network 10.20.9.0 mask 255.255.255.0
+ network 10.20.10.0 mask 255.255.255.0
+ network 10.20.11.0 mask 255.255.255.0
+ network 192.168.20.0 mask 255.255.255.0
+ aggregate-address 10.20.0.0 255.255.0.0 summary-only
+ 
+---------------------------
+router ospf 1 
+network 192.168.20.2 0.0.0.255 area 0 
+
+
+
+
