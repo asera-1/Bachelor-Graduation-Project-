@@ -101,115 +101,99 @@ Bachelor-Graduation-Project-/
 ├── Service provider documentation .docx
 ├── Service privider presentation.pptx
 └── full emulation to network and security.pdf
-
 ```
-How to Use This Project
-1. Explore the Design
+## 🚀 How to Use This Project
 
-Start with full emulation to network and security.pdf for a detailed written explanation.
+### **1. Explore the Design**
 
-Open Graduation project presentation.pptx to see the summarized slides used in the final defense.
+- Start with **`full emulation to network and security.pdf`** for a detailed written explanation.
+- Open **`Graduation project presentation.pptx`** to see the summarized slides used in the final defense.
+- For SP/MPLS details, read **`Service provider documentation .docx`** and its presentation.
 
-For SP/MPLS details, read Service provider documentation .docx and its presentation.
+---
 
-2. Recreate the Lab (Optional)
+### **2. Recreate the Lab (Optional)**
 
 To recreate the full emulation:
 
-Install EVE-NG (community or pro) on a VM or bare metal.
+1. Install **EVE-NG** (community or pro) on a VM or bare metal.  
+2. Install **VMware Workstation** (used originally to host EVE-NG and VMs).  
+3. Import or recreate the topologies:
 
-Install VMware Workstation (used originally to host EVE-NG and other VMs).
+   - HQ  
+   - Branch  
+   - Data Center  
+   - Service Provider  
 
-Import / recreate:
+   …based on the diagrams in the `Topology/` folder and the PDF.
 
-HQ, branch, data center, and service provider topologies based on the diagrams in the Topology/ folder and the PDF.
+4. Apply the router/switch configurations from:
 
-Apply the router/switch configurations from:
+   - `CIB Head qurter/`
+   - `CIB branch/`
+   - `CIB data center/`
+   - `PE1_Ales.txt`, `PE1_Aswan.txt`
 
-CIB Head qurter/
+5. Test the following:
 
-CIB branch/
+   - Connectivity between branches  
+   - HSRP failover  
+   - OSPF convergence  
+   - MPLS VPN reachability between sites  
+   - Access to data center services via HTTPS  
 
-CIB data center/
+> **Note:** Cisco device images are *not* included in this repo for licensing reasons.  
+> You must provide your own legally obtained images.
 
-PE1_Ales.txt, PE1_Aswan.txt
+---
 
-Test:
+## 🧪 Technologies & Protocols
 
-Connectivity between branches
+### **Simulation / Virtualization**
+- EVE-NG  
+- VMware Workstation  
 
-HSRP failover
+### **Routing & WAN**
+- OSPF (intra-domain)  
+- MPLS (label switching)  
+- VRF / VPNv4 (L3 VPN)  
+- MP-BGP (VPN route exchange, RD/RT)  
+- Route Reflectors in the SP core  
 
-OSPF convergence
+### **Switching & L2 Security**
+- MST (Multiple Spanning Tree)  
+- Rapid-PVST  
+- VTP  
+- Port Security  
+- BPDU Guard  
 
-MPLS VPN reachability between sites
+### **Redundancy**
+- HSRP (gateway redundancy)  
+- Redundant links & routers in HQ, branch, and SP  
 
-Access to data center services via HTTPS
+### **Data Center**
+- Spine–leaf architecture  
+- HTTPS-secured services  
 
-Cisco device images are not included in this repo for licensing reasons. You must provide your own legally obtained images.
+---
 
-🧪 Technologies & Protocols
+## 📌 Future Improvements
 
-Simulation / Virtualization
+Planned but not yet implemented:
 
-EVE-NG
+- Integration of a **Fortigate firewall**  
+- Additional L2 security protocols  
+- Enterprise endpoint policy enforcement  
+- **DMVPN** for scalable VPNs  
+- **RADIUS server** for centralized authentication  
 
-VMware Workstation
+---
 
-Routing & WAN
+## 👤 Author
 
-OSPF (intra-domain routing)
+**Abdalla Sera**  
+Bachelor of Engineering – Systems & Computer Engineering  
+Al-Azhar University  
 
-MPLS (label switching)
-
-VRF, VPNv4 (L3 VPN)
-
-MP-BGP (VPN route exchange, RD/RT)
-
-Route Reflectors in the SP core
-
-Switching & L2 Security
-
-MST (Multiple Spanning Tree)
-
-Rapid-PVST
-
-VTP
-
-Port Security
-
-BPDU Guard
-
-Redundancy
-
-HSRP (gateway redundancy)
-
-Redundant links and routers in HQ, branch, and SP
-
-Data Center
-
-Spine–leaf architecture
-
-HTTPS-based secure services
-
-📌 Future Improvements
-
-Planned but not fully implemented items:
-
-Integration of a Fortigate firewall for advanced security policies
-
-Additional L2 security features
-
-Enterprise endpoint policies
-
-DMVPN for scalable VPN connectivity
-
-RADIUS server for centralized authentication
-
-👤 Author
-
-Abdalla Sera
-Bachelor of Engineering – Systems & Computer Engineering
-Al-Azhar University
-
-This project was originally completed as a team graduation project under the supervision of Dr. Mohamed Ashraf Madkor and presented to Prof. Dr. Ali El Semari.
+Project supervised by **Dr. Mohamed Ashraf Madkor**  
+Presented to **Prof. Dr. Ali El Semari**  
