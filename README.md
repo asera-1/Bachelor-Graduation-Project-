@@ -101,3 +101,115 @@ Bachelor-Graduation-Project-/
 ├── Service provider documentation .docx
 ├── Service privider presentation.pptx
 └── full emulation to network and security.pdf
+
+```
+How to Use This Project
+1. Explore the Design
+
+Start with full emulation to network and security.pdf for a detailed written explanation.
+
+Open Graduation project presentation.pptx to see the summarized slides used in the final defense.
+
+For SP/MPLS details, read Service provider documentation .docx and its presentation.
+
+2. Recreate the Lab (Optional)
+
+To recreate the full emulation:
+
+Install EVE-NG (community or pro) on a VM or bare metal.
+
+Install VMware Workstation (used originally to host EVE-NG and other VMs).
+
+Import / recreate:
+
+HQ, branch, data center, and service provider topologies based on the diagrams in the Topology/ folder and the PDF.
+
+Apply the router/switch configurations from:
+
+CIB Head qurter/
+
+CIB branch/
+
+CIB data center/
+
+PE1_Ales.txt, PE1_Aswan.txt
+
+Test:
+
+Connectivity between branches
+
+HSRP failover
+
+OSPF convergence
+
+MPLS VPN reachability between sites
+
+Access to data center services via HTTPS
+
+Cisco device images are not included in this repo for licensing reasons. You must provide your own legally obtained images.
+
+🧪 Technologies & Protocols
+
+Simulation / Virtualization
+
+EVE-NG
+
+VMware Workstation
+
+Routing & WAN
+
+OSPF (intra-domain routing)
+
+MPLS (label switching)
+
+VRF, VPNv4 (L3 VPN)
+
+MP-BGP (VPN route exchange, RD/RT)
+
+Route Reflectors in the SP core
+
+Switching & L2 Security
+
+MST (Multiple Spanning Tree)
+
+Rapid-PVST
+
+VTP
+
+Port Security
+
+BPDU Guard
+
+Redundancy
+
+HSRP (gateway redundancy)
+
+Redundant links and routers in HQ, branch, and SP
+
+Data Center
+
+Spine–leaf architecture
+
+HTTPS-based secure services
+
+📌 Future Improvements
+
+Planned but not fully implemented items:
+
+Integration of a Fortigate firewall for advanced security policies
+
+Additional L2 security features
+
+Enterprise endpoint policies
+
+DMVPN for scalable VPN connectivity
+
+RADIUS server for centralized authentication
+
+👤 Author
+
+Abdalla Sera
+Bachelor of Engineering – Systems & Computer Engineering
+Al-Azhar University
+
+This project was originally completed as a team graduation project under the supervision of Dr. Mohamed Ashraf Madkor and presented to Prof. Dr. Ali El Semari.
